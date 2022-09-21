@@ -14,6 +14,9 @@ const PROD_BASE_URL = '/'
 // 是否启用 mock
 const MOCK_ENABLE = false
 
+// 是否开启外部配置api
+const OUT_API = true
+
 export const SERVICES = {
   /*
     start: 网络请求相关配置
@@ -21,7 +24,7 @@ export const SERVICES = {
   // 是否启用 mock
   MOCK_ENABLE,
   // 协议+主机名+端口号
-  BASE_URL: ENVS.IS_DEV ? (MOCK_ENABLE ? '/' : DEV_BASE_URL) : PROD_BASE_URL,
+  BASE_URL: ENVS.IS_DEV ? (MOCK_ENABLE ? '/' : OUT_API ? window.ipConfigUrl.devEnvUrl : DEV_BASE_URL) : OUT_API ? window.ipConfigUrl.proEnvURL : PROD_BASE_URL,
   /**
    * 这里假设假设你的服务端返回的 response body 为
    * {
